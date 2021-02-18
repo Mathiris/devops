@@ -1,7 +1,7 @@
 resources:
   pipelines:
   - pipeline: EsgiProjetCI
-    source: Esgi11.Projet-CI
+    source: Esgi12.Projet-CI
 trigger:
   branches:
     include:
@@ -25,7 +25,7 @@ stages:
                 displayName: Deploy to Azure Web App
                 inputs:
                   azureSubscription: esgi-tp
-                  webAppName: esgi-devops11tp3-app
+                  webAppName: esgi-devops12prj-app
                   deployToSlotOrASE: true
                     slotName: staging
                     resourceGroupName: esgi-devops11-rg
@@ -49,6 +49,6 @@ stages:
                 displayName: Deploy to Azure Web App
                 inputs:
                   azureSubscription: esgi-tp
-                  webAppName: esgi-devops11tp3-app
-                  resourceGroupName: esgi-devops11-rg
+                  webAppName: esgi-devops12prj-app
+                  resourceGroupName: esgi-devops12-rg
                   package: $(Pipeline.Workspace)/EsgiProjetCI/$(Build.BuildId).zip
