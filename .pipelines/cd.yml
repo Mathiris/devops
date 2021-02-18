@@ -28,7 +28,7 @@ stages:
                   webAppName: esgi-devops12prj-app
                   deployToSlotOrASE: true
                     slotName: staging
-                    resourceGroupName: esgi-devops11-rg
+                    resourceGroupName: esgi-devops12-rg
                   package: $(Pipeline.Workspace)/EsgiProjetCI/$(Build.BuildId).zip
 
   - stage: Prod
