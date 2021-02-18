@@ -10,7 +10,7 @@ stages:
   - stage: Staging
     jobs:
     - deployment: Deploy
-      environment: Staging-Projet
+      environment: Staging-Prj
       strategy:
         runOnce:
           deploy:
@@ -34,7 +34,7 @@ stages:
   - stage: Prod
     jobs:
     - deployment: Deploy
-      environment: Prod-Projet
+      environment: Prod-Prj
       strategy:
         runOnce:
           deploy:
