@@ -1,1 +1,1 @@
-This project is using a CI and et CD on Azure DevOpsplatform.
+This project is using a CI and et & CD on Azure DevOpsplatform.
