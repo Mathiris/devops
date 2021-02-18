@@ -1,7 +1,7 @@
 resources:
   pipelines:
-  - pipeline: EsgiProjetCI
-    source: Esgi12.Projet-CI
+  - pipeline: EsgiPrjCI
+    source: Esgi12.Prj-CI
 trigger:
   branches:
     include:
@@ -16,7 +16,7 @@ stages:
           deploy:
             steps:
               - checkout: none
-              - download: EsgiProjetCI
+              - download: EsgiPrjCI
               - task: UsePythonVersion@0
                 inputs:
                   versionSpec: '3.8'
@@ -29,7 +29,7 @@ stages:
                   deployToSlotOrASE: true
                     slotName: staging
                     resourceGroupName: esgi-devops12-rg
-                  package: $(Pipeline.Workspace)/EsgiProjetCI/$(Build.BuildId).zip
+                  package: $(Pipeline.Workspace)/EsgiPrjCI/$(Build.BuildId).zip
 
   - stage: Prod
     jobs:
@@ -40,7 +40,7 @@ stages:
           deploy:
             steps:
               - checkout: none
-              - download: EsgiProjetCI
+              - download: EsgiPrjCI
               - task: UsePythonVersion@0
                 inputs:
                   versionSpec: '3.8'
@@ -51,4 +51,4 @@ stages:
                   azureSubscription: esgi-tp
                   webAppName: esgi-devops12prj-app
                   resourceGroupName: esgi-devops12-rg
-                  package: $(Pipeline.Workspace)/EsgiProjetCI/$(Build.BuildId).zip
+                  package: $(Pipeline.Workspace)/EsgiPrjCI/$(Build.BuildId).zip
