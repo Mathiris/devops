@@ -1,21 +1,41 @@
-steps:
+stages:
+- stage: Validate
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: windows-latest
+    steps:
     - task: UsePythonVersion@0
-       inputs:
-         versionSpec: '$(pythonVersion)'
-         displayName: 'Use Python $(pythonVersion)'
+      inputs:
+        versionSpec: '3.9'
+      displayName: 'Install Python 3.9'
+    
     - script: |
-         python -m venv antenv
-         source antenv/bin/activate
-         python -m pip install --upgrade pip
-         pip install setup
-         pip install -r requirements.txt
-         set FLASK_APP=Test.py
-         [18:20] Mathias GIANOTTI
-flask run
+        python -m venv env
+        env/Scripts/activate
+        python -m pip install --upgrade pip
+        pip install setup
+        pip install Flask
+      workingDirectory: $(System.DefaultWorkingDirectory)
+      displayName: "Install requirements"
 
+    - script: |
+        env/Scripts/activate
+        python build.py
+      workingDirectory: $(System.DefaultWorkingDirectory)
+      displayName: "Download Model"
 
+    - task: ArchiveFiles@2
+      displayName: 'Archive files'
+      inputs:
+        rootFolderOrFile: $(System.DefaultWorkingDirectory)
+        includeRootFolder: false
+        archiveType: zip
+        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+        replaceExistingArchive: true
 
-         
-
-       workingDirectory: $(projectRoot)
-       displayName: "Install requirements"
+    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+      displayName: 'Upload package'
+      artifact: drop
+      
