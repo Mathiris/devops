@@ -29,7 +29,7 @@ stages:
                   deployToSlotOrASE: true
                   slotName: staging
                   resourceGroupName: esgi-devops12-rg
-                  package: $(Pipeline.Workspace)/EsgiPrjCI/$(Build.BuildId).zip
+                  package: $(Pipeline.Workspace)/EsgiPrjCI/drop/$(Build.BuildId).zip
 
   - stage: Prod
     jobs:
@@ -51,4 +51,4 @@ stages:
                   azureSubscription: esgi-tp
                   webAppName: esgi-devops12prj-app
                   resourceGroupName: esgi-devops12-rg
-                  package: $(Pipeline.Workspace)/EsgiPrjCI/$(Build.BuildId).zip
+                  package: $(Pipeline.Workspace)/EsgiPrjCI/drop/$(Build.BuildId).zip
