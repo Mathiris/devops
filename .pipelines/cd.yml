@@ -43,7 +43,7 @@ stages:
               - download: EsgiProjetCI
               - task: UsePythonVersion@0
                 inputs:
-                  versionSpec: '3.9'
+                  versionSpec: '3.8'
                 displayName: 'Use Python version'
               - task: AzureRmWebAppDeployment@4
                 displayName: Deploy to Azure Web App
